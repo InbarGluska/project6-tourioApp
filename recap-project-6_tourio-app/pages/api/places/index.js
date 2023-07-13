@@ -1,5 +1,14 @@
-import { places } from '../../../lib/db';
+// import { places } from "../../../lib/db";
+import dbConnect from "./db/connect.js";
+import Place from "./db/models/Place";
 
-export default function handler(request, response) {
-  return response.status(200).json(places);
+export default async function handler(request, response) {
+  await dbConnect();
+  if (request.method === "GET") {
+    const places = await Place.find();
+
+    return response.status(200).json(places);
+  } else {
+    return response.status(405).json({ message: "Method not allowed" });
+  }
 }
