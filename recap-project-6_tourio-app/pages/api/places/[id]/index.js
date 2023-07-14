@@ -9,7 +9,7 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     try {
-      const place = await Place.findById(id);
+      const places = await Place.findById(id);
 
       if (!id) {
         return;
