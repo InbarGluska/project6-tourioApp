@@ -11,10 +11,12 @@ export default function EditPage() {
   const { id } = router.query;
   const { push } = router; // icke
   const { data: place, isLoading, error } = useSWR(`/api/places/${id}`);
+
   const { trigger, isMutating } = useSWRMutation(
     `/api/places/${id}`,
     sendRequest
   );
+
   async function sendRequest(url, { arg }) {
     const response = await fetch(url, {
       method: "PATCH",
@@ -23,16 +25,19 @@ export default function EditPage() {
         "Content-Type": "application/json",
       },
     });
+
     if (response.ok) {
       await response.json();
     } else {
       console.error(`Error: ${response.status}`);
     }
   }
+
   async function editPlace(place) {
     console.log("Place edited (but not really...");
     await trigger(place);
     push("/");
+
     if (isMutating) {
       return <h1>Submitting your changes...</h1>;
     }

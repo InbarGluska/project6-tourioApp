@@ -31,6 +31,7 @@ const StyledLocationLink = styled(StyledLink)`
 export default function DetailsPage() {
   const router = useRouter();
   const { isReady } = router;
+  const { push } = router;
   const { id } = router.query;
 
   const { data: place, isLoading, error } = useSWR(`/api/places/${id}`);
@@ -71,10 +72,10 @@ export default function DetailsPage() {
       <p>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>
-          <StyledLink>Edit</StyledLink>
+          <StyledLink>EDIT✏</StyledLink>
         </Link>
         <StyledButton onClick={deletePlace} type="button" variant="delete">
-          Delete
+          DELETE❌
         </StyledButton>
       </ButtonContainer>
     </>
