@@ -35,7 +35,6 @@ export default function EditPage() {
 
   async function editPlace(place) {
     console.log("Place edited (but not really...");
-
     await trigger(place);
     push("/");
 
@@ -43,9 +42,7 @@ export default function EditPage() {
       return <h1>Submitting your changes...</h1>;
     }
   }
-
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
-
   return (
     <>
       <h2 id="edit-place">Edit Place</h2>

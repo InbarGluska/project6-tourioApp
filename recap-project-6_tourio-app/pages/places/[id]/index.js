@@ -43,7 +43,7 @@ export default function DetailsPage() {
       await fetch(`/api/places/${id}`, {
         method: "DELETE",
       });
-      push("/");
+      router.push("/");
     }
   }
 
